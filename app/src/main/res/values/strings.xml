@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">HF</string>
+    <string name="name">Name</string>
+    <string name="balance">Balance</string>
+    <string name="description">Description</string>
+    <string name="category">Category</string>
+    <string name="amount">Amount</string>
+    <string name="income">Income</string>
+    <string name="expense">Expense</string>
+
+    <string-array name="category_items">
+        <item>Bills</item>
+        <item>Hospitality</item>
+        <item>Entertainment</item>
+        <item>Shopping</item>
+        <item>Health</item>
+        <item>Cash Withdraw</item>
+        <item>Transport</item>
+        <item>Clothing</item>
+        <item>Other</item>
+    </string-array>
+</resources>
