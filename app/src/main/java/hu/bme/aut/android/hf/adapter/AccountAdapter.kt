@@ -1,6 +1,7 @@
 package hu.bme.aut.android.hf.adapter
 
 import android.content.Intent
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -20,6 +21,11 @@ class AccountAdapter(private val listener: AccountBalanceClickListener) : Recycl
         val accountBalance = balances[position]
         holder.binding.name.text = accountBalance.name
         holder.binding.balance.text = "${ accountBalance.balance } Ft"
+        if (accountBalance.balance < 0) {
+            holder.binding.balance.setTextColor(Color.parseColor("#e74c3c"))
+        } else if (accountBalance.balance > 0) {
+            holder.binding.balance.setTextColor(Color.parseColor("#2ecc71"))
+        }
         holder.binding.delete.setOnClickListener{
             balances.removeAt(position)
             listener.onBalanceDelete(accountBalance)

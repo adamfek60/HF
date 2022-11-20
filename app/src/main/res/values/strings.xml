@@ -10,12 +10,14 @@
     <string name="default_balance">Default Balance</string>
 
     <string-array name="category_items">
+        <item>Transfer</item>
         <item>Bills</item>
         <item>Hospitality</item>
         <item>Entertainment</item>
         <item>Shopping</item>
         <item>Health</item>
         <item>Cash Withdraw</item>
+        <item>Cash Deposit</item>
         <item>Transport</item>
         <item>Clothing</item>
         <item>Other</item>

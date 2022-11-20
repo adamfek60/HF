@@ -16,7 +16,7 @@ data class Transaction(
     @ColumnInfo(name = "amount") var amount: Int
 ) {
     enum class Category {
-        BILLS, HOSPITALITY, ENTERTAINMENT, SHOPPING, HEALTH, CASH_WITHDRAW, TRANSPORT, CLOTHING, OTHER;
+        TRANSFER, BILLS, HOSPITALITY, ENTERTAINMENT, SHOPPING, HEALTH, CASH_WITHDRAW, CASH_DEPOSIT, TRANSPORT, CLOTHING, OTHER;
         companion object {
             @JvmStatic
             @TypeConverter

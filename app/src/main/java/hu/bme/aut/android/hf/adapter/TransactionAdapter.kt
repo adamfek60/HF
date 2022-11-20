@@ -1,5 +1,6 @@
 package hu.bme.aut.android.hf.adapter
 
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -18,11 +19,16 @@ class TransactionAdapter(private val listener: TransactionClickListener) : Recyc
         holder.binding.tvName.text = transaction.name
         holder.binding.tvDescription.text = transaction.description
         holder.binding.tvCategory.text = transaction.category.name
-        if (transaction.income && !transaction.expense) {
+        if (transaction.income && transaction.amount != 0) {
             holder.binding.amount.text = "+${transaction.amount} Ft"
-        } else if (!transaction.income && transaction.expense) {
+            holder.binding.amount.setTextColor(Color.parseColor("#2ecc71"))
+        } else if (transaction.expense && transaction.amount != 0) {
             holder.binding.amount.text = "-${transaction.amount} Ft"
-        } else {}
+            holder.binding.amount.setTextColor(Color.parseColor("#e74c3c"))
+        } else {
+            holder.binding.amount.text = "-${transaction.amount} Ft"
+            holder.binding.amount.setTextColor(Color.parseColor("#757575"))
+        }
 
         holder.binding.delete.setOnClickListener {
             transactions.removeAt(position)

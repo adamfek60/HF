@@ -1,5 +1,6 @@
 package hu.bme.aut.android.hf
 
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
@@ -37,6 +38,14 @@ class TransactionActivity : AppCompatActivity(), TransactionAdapter.TransactionC
         balance = intent.getStringExtra("AccountBalance")
         binding.name.text = name
         binding.balance.text = "${ balance } Ft"
+
+        if (balance?.toInt()!! < 0) {
+            binding.balance.setTextColor(Color.parseColor("#e74c3c"))
+        } else if (balance?.toInt()!! > 0) {
+            binding.balance.setTextColor(Color.parseColor("#2ecc71"))
+        } else {
+            binding.balance.setTextColor(Color.parseColor("#757575"))
+        }
 
         transactionDatabase = TransactionDatabase.getDatabase(applicationContext)
 
@@ -132,6 +141,14 @@ class TransactionActivity : AppCompatActivity(), TransactionAdapter.TransactionC
             runOnUiThread {
                 initRecyclerView()
                 binding.balance.text = "${ newBal } Ft"
+
+                if (newBal < 0) {
+                    binding.balance.setTextColor(Color.parseColor("#e74c3c"))
+                } else if (newBal > 0) {
+                    binding.balance.setTextColor(Color.parseColor("#2ecc71"))
+                } else {
+                    binding.balance.setTextColor(Color.parseColor("#757575"))
+                }
             }
          }
     }
@@ -164,6 +181,14 @@ class TransactionActivity : AppCompatActivity(), TransactionAdapter.TransactionC
             runOnUiThread {
                 transactionAdapter.deleteTransaction(transaction)
                 binding.balance.text = "${ newBal } Ft"
+
+                if (newBal < 0) {
+                    binding.balance.setTextColor(Color.parseColor("#e74c3c"))
+                } else if (newBal > 0) {
+                    binding.balance.setTextColor(Color.parseColor("#2ecc71"))
+                } else {
+                    binding.balance.setTextColor(Color.parseColor("#757575"))
+                }
             }
             Log.d("TransactionActivity", "Transaction update was successful")
         }
@@ -197,6 +222,14 @@ class TransactionActivity : AppCompatActivity(), TransactionAdapter.TransactionC
             runOnUiThread {
                 transactionAdapter.addTransaction(newTransaction)
                 binding.balance.text = "${ newBal } Ft"
+
+                if (newBal < 0) {
+                    binding.balance.setTextColor(Color.parseColor("#e74c3c"))
+                } else if (newBal > 0) {
+                    binding.balance.setTextColor(Color.parseColor("#2ecc71"))
+                } else {
+                    binding.balance.setTextColor(Color.parseColor("#757575"))
+                }
             }
         }
     }
