@@ -7,22 +7,10 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <com.google.android.material.appbar.AppBarLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorSecondary" />
-    </com.google.android.material.appbar.AppBarLayout>
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/listMain"
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:layout_marginTop="?attr/actionBarSize"
         tools:listitem="@layout/account_balance_list" >
 
     </androidx.recyclerview.widget.RecyclerView>
@@ -30,11 +18,101 @@
     <com.github.mikephil.charting.charts.PieChart
         android:id="@+id/chart"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="175dp"
-        android:layout_marginBottom="100dp">
+        android:layout_height="465dp"
+        android:layout_marginTop="100dp" >
 
     </com.github.mikephil.charting.charts.PieChart>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:weightSum="3"
+        android:layout_marginTop="565dp"
+        android:layout_marginBottom="100dp" >
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:weightSum="2" >
+            <TextView
+                android:id="@+id/defaultBalanceText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/default_balance"
+                android:textColor="#f1c40f"
+                android:textStyle="bold"
+                android:gravity="center" >
+            </TextView>
+            <TextView
+                android:id="@+id/defaultBalanceValue"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/default_balance"
+                android:textColor="#f1c40f"
+                android:textStyle="bold"
+                android:gravity="center" >
+            </TextView>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:weightSum="2" >
+            <TextView
+                android:id="@+id/incomeText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/income"
+                android:textColor="#2ecc71"
+                android:textStyle="bold"
+                android:gravity="center" >
+            </TextView>
+            <TextView
+                android:id="@+id/incomeValue"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/income"
+                android:textColor="#2ecc71"
+                android:textStyle="bold"
+                android:gravity="center" >
+            </TextView>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:weightSum="2" >
+            <TextView
+                android:id="@+id/expenseText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/expense"
+                android:textColor="#e74c3c"
+                android:textStyle="bold"
+                android:gravity="center" >
+            </TextView>
+            <TextView
+                android:id="@+id/expenseValue"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/expense"
+                android:textColor="#e74c3c"
+                android:textStyle="bold"
+                android:gravity="center" >
+            </TextView>
+        </LinearLayout>
+    </LinearLayout>
+
 
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton

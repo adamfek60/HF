@@ -10,6 +10,7 @@ import com.github.mikephil.charting.data.PieData
 import com.github.mikephil.charting.data.PieDataSet
 import com.github.mikephil.charting.data.PieEntry
 import com.github.mikephil.charting.utils.ColorTemplate
+import com.github.mikephil.charting.utils.Utils
 import hu.bme.aut.android.hf.adapter.AccountAdapter
 import hu.bme.aut.android.hf.data.AccountBalance
 import hu.bme.aut.android.hf.data.AccountListDatabase
@@ -17,6 +18,7 @@ import hu.bme.aut.android.hf.data.TransactionDatabase
 import hu.bme.aut.android.hf.databinding.ActivityMainBinding
 import hu.bme.aut.android.hf.fragments.NewAccountBalanceDialogFragment
 import kotlin.concurrent.thread
+import kotlin.math.tan
 
 class MainActivity : AppCompatActivity(), AccountAdapter.AccountBalanceClickListener,
     NewAccountBalanceDialogFragment.NewAccountBalanceDialogListener {
@@ -30,7 +32,6 @@ class MainActivity : AppCompatActivity(), AccountAdapter.AccountBalanceClickList
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        setSupportActionBar(binding.toolbar)
 
         database = AccountListDatabase.getDatabase(applicationContext)
 
@@ -145,6 +146,7 @@ class MainActivity : AppCompatActivity(), AccountAdapter.AccountBalanceClickList
             var income = 0
             var expense = 0
             var default = 0
+            var balanceNow = 0
             default = if (database.accountBalanceDao().getAll().isEmpty()) {
                 0
             } else {
@@ -159,19 +161,24 @@ class MainActivity : AppCompatActivity(), AccountAdapter.AccountBalanceClickList
                     expense += i.amount
                 }
             }
+            balanceNow = default + expense - income
 
             val entries = listOf(
                 PieEntry(income.toFloat(), "Income"),
-                PieEntry((default + expense - income).toFloat(),
+                PieEntry(balanceNow.toFloat(),
                     "Default Balance"),
                 PieEntry(expense.toFloat(), "Expense")
             )
 
+            binding.defaultBalanceValue.text = balanceNow.toString()
+            binding.incomeValue.text = income.toString()
+            binding.expenseValue.text = expense.toString()
+
             val dataSet = PieDataSet(entries, "")
             dataSet.colors = ColorTemplate.MATERIAL_COLORS.toList()
 
-
             val data = PieData(dataSet)
+            data.setValueTextColor(Color.BLACK)
             data.setValueTextSize(20f)
             binding.chart.data = data
             binding.chart.invalidate()
