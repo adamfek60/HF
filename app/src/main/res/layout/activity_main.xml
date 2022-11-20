@@ -21,10 +21,21 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/listMain"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="100dp"
         android:layout_marginTop="?attr/actionBarSize"
-        android:layout_marginBottom="100dp"
-        tools:listitem="@layout/account_balance_list" />
+        tools:listitem="@layout/account_balance_list" >
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+    <com.github.mikephil.charting.charts.PieChart
+        android:id="@+id/chart"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="175dp"
+        android:layout_marginBottom="100dp">
+
+    </com.github.mikephil.charting.charts.PieChart>
+
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/add"

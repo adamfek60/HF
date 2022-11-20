@@ -7,33 +7,33 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.widget.ArrayAdapter
 import android.widget.Toast
+import androidx.appcompat.R
 import androidx.fragment.app.DialogFragment
-import hu.bme.aut.android.hf.R
 import hu.bme.aut.android.hf.data.Transaction
 import hu.bme.aut.android.hf.databinding.DialogNewTransactionBinding
 import java.lang.RuntimeException
 
-class NewTransactionDialogFragment : DialogFragment() {
-    interface NewTransactionDialogListener {
-        fun onTransactionCreate(newTransaction: Transaction)
+class EditTransactionDialogFragment : DialogFragment() {
+    interface EditTransactionDialogListener {
+        fun onTransactionEdit(editTransaction: Transaction)
     }
 
-    private lateinit var listener: NewTransactionDialogListener
+    private lateinit var listener: EditTransactionDialogListener
 
     private lateinit var binding: DialogNewTransactionBinding
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        listener = context as? NewTransactionDialogListener
-            ?: throw RuntimeException("Activity must implement the NewTransactionDialogListener interface!")
+        listener = context as? EditTransactionDialogListener
+            ?: throw RuntimeException("Activity must implement the EditTransactionDialogListener interface!")
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         binding = DialogNewTransactionBinding.inflate(LayoutInflater.from(context))
         binding.spCategory.adapter = ArrayAdapter(
             requireContext(),
-            androidx.appcompat.R.layout.support_simple_spinner_dropdown_item,
-            resources.getStringArray(R.array.category_items)
+            R.layout.support_simple_spinner_dropdown_item,
+            resources.getStringArray(hu.bme.aut.android.hf.R.array.category_items)
         )
 
         return AlertDialog.Builder(requireContext())
@@ -41,7 +41,7 @@ class NewTransactionDialogFragment : DialogFragment() {
             .setView(binding.root)
             .setPositiveButton("OK") { dialogInterface, i ->
                 if (isValid()) {
-                    listener.onTransactionCreate(getTransaction())
+                    listener.onTransactionEdit(getTransaction())
                 } else {
                     Toast.makeText(context, "Add amount!", Toast.LENGTH_LONG).show()
                 }
@@ -63,7 +63,6 @@ class NewTransactionDialogFragment : DialogFragment() {
     )
 
     companion object {
-        const val TAG = "NewTransactionDialogFragment"
+        const val TAG = "EditTransactionDialogFragment"
     }
-
 }

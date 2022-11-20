@@ -29,9 +29,14 @@ class TransactionAdapter(private val listener: TransactionClickListener) : Recyc
             listener.onTransactionDelete(transaction)
             notifyItemRemoved(position)
         }
+        holder.binding.edit.setOnClickListener {
+            listener.onTransactionChanged(transaction)
+            notifyItemChanged(position)
+        }
     }
 
     interface TransactionClickListener {
+        fun onTransactionEdit(editTransaction: Transaction)
         fun onTransactionChanged(transaction: Transaction)
         fun onTransactionDelete(transaction: Transaction)
     }
