@@ -130,8 +130,8 @@ class TransactionActivity : AppCompatActivity(), TransactionAdapter.TransactionC
                 editTransaction.amount
             ))
             runOnUiThread {
-                transactionAdapter.update(transactionDatabase.transactionDao().getAll())
-                //binding.balance.text = "${ newBal } Ft"
+                initRecyclerView()
+                binding.balance.text = "${ newBal } Ft"
             }
          }
     }
